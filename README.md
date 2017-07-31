@@ -11,11 +11,20 @@ This is used to image capture newrelic metrics using headless chrome and NodeJS
 
 4. Working Yubi(Tested on gpg2)
 
+## How to install
+1. npm install --save simple-headless-chrome
+2. Make sure your canary chrome or if having a version 59 are in placed or existing in one these directories:
+
+"/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
+"/Applications/Google\ Chrome\ Canary.app/Contents/MacOS/Google\ Chrome\ Canary"
+
+
 ## Usage
 node main.js [YUBI_KEY] [SITE_UUID] [NEWRELIC_ACCT_ID] [NEWRELIC_APP_ID]
 
 
-
+## Credits 
+Thanks https://github.com/LucianoGanga
 
 
 
