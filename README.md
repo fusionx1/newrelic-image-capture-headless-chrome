@@ -1,5 +1,5 @@
 # New Relic Image Capture on NodeJS
-This is a prototype in capturing newrelic metric using headless chrome
+This is used to image capture newrelic metrics using headless chrome and NodeJS
 
 ## Requirements
 1. Install nodejs. Node.js is a platform built on Chrome's JavaScript runtime for easily building fast and scalable network applications. - https://nodejs.org/en/download/
@@ -13,6 +13,8 @@ This is a prototype in capturing newrelic metric using headless chrome
 
 ## Usage
 node main.js [YUBI_KEY] [SITE_UUID] [NEWRELIC_ACCT_ID] [NEWRELIC_APP_ID]
+
+
 
 
 
