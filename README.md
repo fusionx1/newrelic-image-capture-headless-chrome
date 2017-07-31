@@ -16,6 +16,7 @@ This is used to image capture newrelic metrics using headless chrome and NodeJS
 2. Make sure your canary chrome or if having a version 59 are in placed or existing in one these directories:
 
 a. "/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
+
 b. "/Applications/Google\ Chrome\ Canary.app/Contents/MacOS/Google\ Chrome\ Canary"
 
 
