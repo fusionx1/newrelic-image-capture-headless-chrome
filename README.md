@@ -12,7 +12,8 @@ This is used to image capture newrelic metrics using headless chrome and NodeJS
 
 ## How to install
 1. npm install --save simple-headless-chrome
-2. Make sure your canary chrome or if having a version 59 are in placed or existing in one these directories:
+2. add your onelogin credentials on main.js
+3. Make sure your canary chrome or if having a version 59 are in placed or existing in one these directories:
 
 > "/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
 
