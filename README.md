@@ -15,10 +15,9 @@ This is used to image capture newrelic metrics using headless chrome and NodeJS
 1. npm install --save simple-headless-chrome
 2. add your onelogin credentials on main.js
 3. Make sure your canary chrome or if having a version 59 are in placed or existing in one these directories:
-
-> "/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
-
-> "/Applications/Google\ Chrome\ Canary.app/Contents/MacOS/Google\ Chrome\ Canary"
+     > "/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
+     > "/Applications/Google\ Chrome\ Canary.app/Contents/MacOS/Google\ Chrome\ Canary"'
+4. Set your terminus path on line 4 of newrelic_image_capture.sh
 
 
 ## Usage
