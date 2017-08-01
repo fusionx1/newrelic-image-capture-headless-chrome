@@ -12,8 +12,10 @@ This is used to image capture newrelic metrics using headless chrome and NodeJS
 7. Working Yubi Key(Tested on gpg2)
 
 ## How to install
-1. npm install --save simple-headless-chrome
-2. add your onelogin credentials on main.js
+1. Clone this repo 
+2. Run this inside newrelic-image-capture-headless-chrome folder
+     > npm install --save simple-headless-chrome
+2. Add your onelogin credentials on main.js
 3. Make sure your canary chrome or if having a version 59 are in placed or existing in one these directories:
      > "/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
      > "/Applications/Google\ Chrome\ Canary.app/Contents/MacOS/Google\ Chrome\ Canary"'
