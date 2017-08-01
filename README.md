@@ -14,16 +14,18 @@ This is used to image capture newrelic metrics using headless chrome and NodeJS
 1. npm install --save simple-headless-chrome
 2. Make sure your canary chrome or if having a version 59 are in placed or existing in one these directories:
 
-a. ```"/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"```
+> "/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
 
-b.``` "/Applications/Google\ Chrome\ Canary.app/Contents/MacOS/Google\ Chrome\ Canary"```
+> "/Applications/Google\ Chrome\ Canary.app/Contents/MacOS/Google\ Chrome\ Canary"
 
 
 ## Usage
 1. Running it directly from nodejs
+
 ```node main.js [YUBI_KEY] [SITE_UUID] [NEWRELIC_ACCT_ID] [NEWRELIC_APP_ID]```
 
 2. Running it via Terminus(Much more friendlier you just need to have the sitename and your yubi key, everything else will be fetched automatically)
+
 ```./newrelic_image_capture.sh [SITE_NAME] [YUBI_KEY]```
 
 
