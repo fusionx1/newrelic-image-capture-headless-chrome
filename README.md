@@ -7,8 +7,9 @@ This is used to image capture newrelic metrics using headless chrome and NodeJS
  - https://www.google.com/chrome/browser/canary.html
 3. Install jq. jq is a lightweight and flexible command-line JSON processor. - https://stedolan.github.io/jq/
 4. You need to have a working Terminus - https://pantheon.io/docs/terminus/install/
-5. Working onelogin account
-6. Working Yubi Key(Tested on gpg2)
+5. You need to install a terminus plugin newrelic-data - https://github.com/fusionx1/terminus-get-newrelic
+6. Working onelogin account
+7. Working Yubi Key(Tested on gpg2)
 
 ## How to install
 1. npm install --save simple-headless-chrome
