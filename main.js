@@ -27,8 +27,8 @@ async function navigateWebsite() {
   ///////////////////////////////
   // Navigate to a onelogin page
   //////////////////////////////
-  await mainTab.goTo('xxxxxxxxxxxx')
-  await mainTab.fill('#user_email', 'paul.depaula@pantheon.io')
+  await mainTab.goTo('https://pantheon.onelogin.com/login')
+  await mainTab.fill('#user_email', 'xxxxxxxxxxxx')
   // Type in an element
   await mainTab.fill('#user_password', 'xxxxxxxxxxxxx')
   await mainTab.click('#user_submit')
