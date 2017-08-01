@@ -118,14 +118,8 @@ async function navigateWebsite() {
   await secondTab.wait(5000)
   await secondTab.saveScreenshot('screenshots/metrics-7days.png')
 
-
   await  mainTab.close()
   await  secondTab.close()
-
-  ///////////////////////////////////////
-  // Navigate to New relic dashboard
-  ///////////////////////////////////////
-
 
   // Close the browser
   await browser.close()
