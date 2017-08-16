@@ -7,17 +7,19 @@ This is used to image capture newrelic metrics using headless chrome and NodeJS
  - https://www.google.com/chrome/browser/canary.html
 3. Install jq. jq is a lightweight and flexible command-line JSON processor. - https://stedolan.github.io/jq/
 4. You need to have a working Terminus - https://pantheon.io/docs/terminus/install/
-5. Working onelogin account
-6. Working Yubi Key(Tested on gpg2)
+5. You need to install a terminus plugin newrelic-data - https://github.com/fusionx1/terminus-get-newrelic
+6. Working onelogin account
+7. Working Yubi Key(Tested on gpg2)
 
 ## How to install
-1. npm install --save simple-headless-chrome
-2. add your onelogin credentials on main.js
+1. Clone this repo 
+2. Run this inside newrelic-image-capture-headless-chrome folder
+     > npm install --save simple-headless-chrome
+2. Add your onelogin credentials on main.js
 3. Make sure your canary chrome or if having a version 59 are in placed or existing in one these directories:
-
-> "/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
-
-> "/Applications/Google\ Chrome\ Canary.app/Contents/MacOS/Google\ Chrome\ Canary"
+     > "/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
+     > "/Applications/Google\ Chrome\ Canary.app/Contents/MacOS/Google\ Chrome\ Canary"'
+4. Set your terminus path on line 4 of newrelic_image_capture.sh
 
 
 ## Usage
