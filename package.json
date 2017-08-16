@@ -1,15 +1,62 @@
 {
-  "name": "my-headless-chrome",
-  "version": "1.0.1",
-  "description": "",
-  "main": "main.js",
+  "name": "simple-headless-chrome",
+  "version": "4.3.1",
+  "description": "Headless Chrome abstraction to simplify the interaction with the browser. It may be used for crawling sites, test automation, etc",
+  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "documentation": "documentation readme lib/actions.js --section=Methods",
+    "build": "rm -rf build; babel lib -d build",
+    "watch": "babel --watch lib -d build",
+    "prepublish": "npm run build; npm run test",
+    "prepare": "npm run build",
+    "prepare-minor": "npm version minor; git push; git push --tags; npm publish",
+    "prepare-patch": "npm version patch; git push; git push --tags; npm publish",
+    "preversion": "npm run -s documentation",
+    "test": "npm run build; DEBUG='HeadlessChrome' tap test 'build/test/**/*.js'"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LucianoGanga/simple-headless-chrome.git"
+  },
+  "keywords": [
+    "headless",
+    "chrome",
+    "chromium",
+    "headless-browser",
+    "phantom-js",
+    "nightmare",
+    "casper",
+    "horseman",
+    "crawler",
+    "test-automation",
+    "browser",
+    "node",
+    "browser"
+  ],
+  "author": "Luciano Andrés Ganga Carabante",
+  "engines": {
+    "node": ">=4"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/LucianoGanga/simple-headless-chrome/issues"
+  },
+  "homepage": "https://github.com/LucianoGanga/simple-headless-chrome#readme",
   "dependencies": {
-    "simple-headless-chrome": "^3.3.1"
+    "babel-polyfill": "^6.23.0",
+    "bluebird": "^3.5.0",
+    "chrome-launcher": "^0.3.2",
+    "chrome-remote-interface": "^0.24.2",
+    "cssesc": "^1.0.0",
+    "deepmerge": "^1.5.0",
+    "lodash": "^4.17.4",
+    "mz": "^2.6.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-preset-env": "^1.6.0",
+    "documentation": "^4.0.0-rc.1",
+    "standard": "^10.0.2",
+    "tap": "^10.7.0"
   }
 }

@@ -1,7 +1,7 @@
 const HeadlessChrome = require('simple-headless-chrome')
 
 const browser = new HeadlessChrome({
-  headless: false,
+  headless: true,
   chrome: {
       flags: [
         '--disable-popup-blocking'
@@ -9,40 +9,39 @@ const browser = new HeadlessChrome({
   }
 })
 async function navigateWebsite() {
-  await browser.init({
-    startNewFirstTab: false // Only if you use a version > 3.3.0. If you use >= 4.0.0, you don't need to add this setting
-  })
-
-  const mainTab = await browser.newTab({
-    privateTab: false // Optional. Defaults to false
-  })
+  try {
+    await browser.init()
+    const mainTab = await browser.newTab({
+      privateTab: false
+    })
 
   const args = process.argv;
   var yubi_key = process.argv[2];
   var site_uuid = process.argv[3];
   var newrelic_id = process.argv[4];
   var newrelic_app_id = process.argv[5];
+  var framework = process.argv[6];
 
 
   ///////////////////////////////
   // Navigate to a onelogin page
   //////////////////////////////
   await mainTab.goTo('https://pantheon.onelogin.com/login')
-  await mainTab.fill('#user_email', 'paul.depaula@pantheon.io')
-  // Type in an element
-  await mainTab.fill('#user_password', 'TGB1234~')
+  await mainTab.type('#user_email', 'xxxxxxxxxxxxxxxxxx')
+  await mainTab.type('#user_password', 'xxxxxxxxxxxxxxxxxxx')
   await mainTab.click('#user_submit')
   await mainTab.log('Click login')
   await mainTab.log('Wait 5 seconds')
   await mainTab.wait(5000)
-  await mainTab.saveScreenshot('screenshots/onelogin.png')
+  await mainTab.wait(5000)
+  await mainTab.saveScreenshot('onelogin')
   await mainTab.log('Took a screenshot of the onelogin form')
-  await mainTab.fill("input[name='otp_token_1']", yubi_key)
+  await mainTab.type("input#otp_token_1.otp_token_input", yubi_key)
   // Just added yubi key
   await mainTab.click('#user_submit')
   await mainTab.log('Wait 5 seconds')
   await mainTab.wait(5000)
-  await mainTab.saveScreenshot('screenshots/added-yubi.png')
+  await mainTab.saveScreenshot('screenshots/added-yubi')
   await mainTab.log('Took a screenshot of the onelogin form with yubikey')
   // Click on a button
   await mainTab.click('#browser_submit')
@@ -73,7 +72,7 @@ async function navigateWebsite() {
   await  mainTab.log('wait 5s..')
   await  mainTab.wait(5000)
   await  mainTab.log('wait 5s...')
-  await  mainTab.saveScreenshot('screenshots/pantheon-admin-dashboard.png')
+  await  mainTab.saveScreenshot('screenshots/pantheon-admin-dashboard')
   await  mainTab.log('screenshot pantheon admin dashboard')
   await  mainTab.goTo('https://admin.dashboard.pantheon.io/sites/' + site_uuid + '#live/new_relic/NewRelic')
   await  mainTab.log('navigate to the site where audit will take place')
@@ -87,7 +86,7 @@ async function navigateWebsite() {
   await  mainTab.log('wait 5s....')
   await  mainTab.wait(5000)
   await  mainTab.log('wait 5s.....')
-  await  mainTab.saveScreenshot('screenshots/site-dashboard-tobe-audited.png')
+  await  mainTab.saveScreenshot('screenshots/site-dashboard-tobe-audited')
   await  mainTab.wait(5000)
   await  mainTab.log('wait 5s...')
   await  mainTab.wait(5000)
@@ -97,36 +96,42 @@ async function navigateWebsite() {
   await  mainTab.click('#sso-form > button')
   await  mainTab.log('Authenticate to newrelic SSO')
   await  mainTab.wait(5000)
-
+  await  mainTab.wait(5000)
+  await  mainTab.wait(5000)
 
   ///////////////////////////////////////
   // Navigate to New Relic Dashboard
   ///////////////////////////////////////
 
+
   const secondTab = await browser.newTab({
     privateTab: false // Optional. Defaults to false
   })
-
-  await secondTab.saveScreenshot('screenshots/nr-overview.png')
+  await secondTab.wait(5000)
+  await secondTab.saveScreenshot('screenshots/nr-overview')
   await secondTab.log('finally landed to newrelic dashboard')
   await secondTab.goTo('https://rpm.newrelic.com/accounts/' + newrelic_id + '/applications/' + newrelic_app_id)
   await secondTab.log('navigate to the site where audit will take place1')
   await secondTab.wait(5000)
-
+  await secondTab.wait(5000)
+  await secondTab.log('wait 5s....')
+  await secondTab.wait(5000)
+  await secondTab.log('wait 5s.....')
   //const downtimeClass = "a[href='/accounts/" + newrelic_id + '/applications/' + newrelic_app_id + "/downtime']"
 
   await secondTab.click('#time_window_nav > h4')
   await secondTab.wait(2000)
-  await secondTab.saveScreenshot('screenshots/set-7days.png')
+  await secondTab.saveScreenshot('screenshots/set-7days')
   await secondTab.click('a[data-open-duration="last_7_days"]')
   await secondTab.wait(5000)
-  await secondTab.saveScreenshot('screenshots/metrics-7days.png')
+  await secondTab.saveScreenshot('screenshots/metrics-7days')
 
   await secondTab.click('#time_window_nav > h4')
   await secondTab.wait(2000)
   await secondTab.click('a[data-open-duration="last_90_days"]')
   await secondTab.wait(5000)
-  await secondTab.saveScreenshot('screenshots/metrics-90days.png')
+  await secondTab.wait(3000)
+  await secondTab.saveScreenshot('screenshots/metrics-90days')
 
   const thirdTab = await browser.newTab({
     privateTab: false // Optional. Defaults to false
@@ -135,14 +140,16 @@ async function navigateWebsite() {
   await thirdTab.log('getting transactions metrics')
   await thirdTab.goTo('https://rpm.newrelic.com/accounts/' + newrelic_id + '/applications/' + newrelic_app_id +'/transactions')
   await thirdTab.wait(5000)
-  await thirdTab.saveScreenshot('screenshots/nr-transactions')
+  await thirdTab.saveScreenshot('screenshots/nr-transactions', {
+     selector: '#primary_content'
+  })
 
   const fourthTab = await browser.newTab({
     privateTab: false // Optional. Defaults to false
   })
 
   await fourthTab.log('getting hooks metrics')
-  await fourthTab.goTo('https://rpm.newrelic.com/accounts/' + newrelic_id + '/applications/' + newrelic_app_id +'/hooks')
+  await fourthTab.goTo('https://rpm.newrelic.com/accounts/' + newrelic_id + '/applications/' + newrelic_app_id + framework + '/hooks')
   await fourthTab.wait(5000)
   await fourthTab.saveScreenshot('screenshots/nr-hooks')
 
@@ -151,7 +158,7 @@ async function navigateWebsite() {
   })
 
   await fifthTab.log('getting themes/plugins metrics')
-  await fifthTab.goTo('https://rpm.newrelic.com/accounts/' + newrelic_id + '/applications/' + newrelic_app_id +'/wordpress/plugins')
+  await fifthTab.goTo('https://rpm.newrelic.com/accounts/' + newrelic_id + '/applications/' + newrelic_app_id + '/' + framework + '/plugins')
   await fifthTab.wait(5000)
   await fifthTab.saveScreenshot('screenshots/nr-themes-plugins')
 
@@ -192,13 +199,11 @@ async function navigateWebsite() {
   await nighthTab.saveScreenshot('screenshots/nr-12month-sla')
 
 
-  ///////////////////////////////////////
-  // Navigate to New relic dashboard
-  ///////////////////////////////////////
-
-
   // Close the browser
   await browser.close()
+  } catch (err) {
+    console.log('ERROR!', err)
+  }
 }
 
 navigateWebsite()
